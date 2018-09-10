@@ -1,1 +1,31 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
 
+
+int main(int argc,char* argv[])
+{
+	if(argc!=3)
+	{
+		perror ("参数错误");
+		exit(1);
+	}
+	int len1=strlen(argv[1]);
+	int len2=strlen(argv[2]);
+	int success=0;
+	char temp;
+	while(len1>=len2)
+	{
+
+		if(strncmp(argv[1],argv[2],len2)==0)
+		{
+			printf("匹配成功\n");	
+			success+=1;
+			break;
+		}
+		else
+		{
+			argv[1]+=1;
+			len1-=1;
+		}
+	}
