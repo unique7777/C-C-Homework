@@ -1,1 +1,40 @@
 
+#include<stdio.h>
+
+void c_qsort(int *a,int beg,int end);
+int main()
+{
+	int a[]={3,3,22,44,5,677,43,3,55,46};
+	int i;
+/*	printf("请输入需要排序的十个整数");
+	for(i=0;i<10;i++)
+		scanf("%d",&a[i]);
+*/	c_qsort(a,0,9);
+	for(i=0;i<10;i++)
+		printf("%d ",a[i]);
+	printf("\n");
+
+
+	return 0;
+}
+void c_qsort(int *a,int beg,int end)
+{
+	if(beg>=end)//容易漏掉的判断，导致递归无法结束
+		return;
+	int i,j,k;
+	i=beg;
+	j=end;
+	k=a[beg];
+	while(i<j)
+	{
+		while(i<j&&a[j]>=k)//i<j前提条件易遗漏，=容易忘掉
+			j--;
+		a[i]=a[j];
+		while(i<j&&a[i]<=k)
+			i++;
+		a[j]=a[i];
+	}
+	a[j]=k;
+	c_qsort(a,beg,j-1);
+	c_qsort(a,i+1,end);
+}
